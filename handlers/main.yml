@@ -1,0 +1,3 @@
+---
+- name: restart nrpe3
+  service: name=nrpe3 state=restarted

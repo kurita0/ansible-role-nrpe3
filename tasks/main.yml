@@ -1,0 +1,13 @@
+---
+- name: Install nrpe
+  pkgng: name={{ item }} state=present
+  with_items:
+    - nrpe3
+
+- name: Copy nrpe.cfg
+  template: src=nrpe.cfg.j2 dest=/usr/local/etc/nrpe.cfg mode=0644 backup=yes
+
+- file: dest=/usr/local/etc/nrpe.d state=directory mode=0755
+
+- name: Start nrpe
+  service: name=nrpe3 enabled=yes state=started
